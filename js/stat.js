@@ -32,20 +32,20 @@ var renderCloud = function (ctx, x, y, color) {
 };
 
 // отрисовка заголовка результатов
-var renderText = function (ctx, textArray) {
+var renderText = function (ctx, headerTextParts) {
   ctx.fillStyle = TEXT_COLOR;
   ctx.font = '16px PT Mono';
-  for (var i = 0; i < textArray.length; i++) {
-    ctx.fillText(textArray[i], CLOUD_X + CLOUD_PADDING, CLOUD_Y + CLOUD_PADDING + (i + 1) * FONT_GEP);
+  for (var i = 0; i < headerTextParts.length; i++) {
+    ctx.fillText(headerTextParts[i], CLOUD_X + CLOUD_PADDING, CLOUD_Y + CLOUD_PADDING + (i + 1) * FONT_GEP);
   }
 };
 
 // получение лучшего результата среди игроков
-var getWinnerResult = function (array) {
+var getWinnerResult = function (results) {
   var bestResult = 0;
-  for (var i = 0; i < array.length; i++) {
-    if (array[i] > bestResult) {
-      bestResult = array[i];
+  for (var i = 0; i < results.length; i++) {
+    if (results[i] > bestResult) {
+      bestResult = results[i];
     }
   }
   return bestResult;
