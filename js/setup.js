@@ -19,13 +19,13 @@ var setupUserName = document.querySelector('.setup-user-name');
 var setupSubmit = document.querySelector('.setup-submit');
 var setupForm = document.querySelector('.setup-wizard-form');
 
-var onPopupEscClick = function (evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
 };
 
-var onSaveButtonClick = function (evt) {
+var onSubmitForm = function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     setupForm.submit();
   }
@@ -33,38 +33,36 @@ var onSaveButtonClick = function (evt) {
 
 var openPopup = function () {
   setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscClick);
+  document.addEventListener('keydown', onPopupEscPress);
   setupUserName.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
       evt.stopPropagation();
     }
   });
-  setupOpenIcon.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      openPopup();
-    }
-  });
-  setupSubmit.addEventListener('click', setupForm.submit);
-  setupSubmit.addEventListener('keydown', onSaveButtonClick);
 };
 
 var closePopup = function () {
   setup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscClick);
+  document.removeEventListener('keydown', onPopupEscPress);
 };
 
 setupOpen.addEventListener('click', openPopup);
 setupClose.addEventListener('click', closePopup);
+
 setupOpenIcon.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
+
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
+
+setupSubmit.addEventListener('click', setupForm.submit);
+setupSubmit.addEventListener('keydown', onSubmitForm);
 
 var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
 var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
@@ -77,7 +75,7 @@ wizardEyes.addEventListener('click', function () {
   wizardEyes.style.fill = WIZARD_EYES_COLORS[Math.floor(Math.random() * WIZARD_EYES_COLORS.length)];
 });
 fireballWrap.addEventListener('click', function () {
-  fireballWrap.style.fill = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
+  // fireballWrap.style.fill = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
   fireballWrap.style.background = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
 });
 
