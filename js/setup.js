@@ -31,19 +31,22 @@ var onSubmitForm = function (evt) {
   }
 };
 
+var onInputEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    evt.stopPropagation();
+  }  
+};
+
 var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
-  setupUserName.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE) {
-      evt.stopPropagation();
-    }
-  });
+  setupUserName.addEventListener('keydown', onInputEscPress);
 };
 
 var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  setupUserName.removeEventListener('keydown', onInputEscPress);
 };
 
 setupOpen.addEventListener('click', openPopup);
