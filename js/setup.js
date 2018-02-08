@@ -34,7 +34,7 @@ var onSubmitForm = function (evt) {
 var onInputEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
     evt.stopPropagation();
-  }  
+  }
 };
 
 var openPopup = function () {
