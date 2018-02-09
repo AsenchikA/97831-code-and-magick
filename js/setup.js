@@ -4,10 +4,84 @@ var WIZARD_FIRSTNAMES = ['Иван', 'Хуан Себастьян', 'Мария'
 var WIZARD_LASTNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var QUANTITY_WIZARD = 4;
+var ENTER_KEYCODE = 13;
+var ESC_KEYCODE = 27;
+
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
-document.querySelector('.setup').classList.remove('hidden');
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = document.querySelector('.setup-close');
+var setupOpenIcon = document.querySelector('.setup-open-icon');
+var setupUserName = document.querySelector('.setup-user-name');
+var setupSubmit = document.querySelector('.setup-submit');
+var setupForm = document.querySelector('.setup-wizard-form');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var onSubmitForm = function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    setupForm.submit();
+  }
+};
+
+var onInputEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    evt.stopPropagation();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+  setupUserName.addEventListener('keydown', onInputEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+  setupUserName.removeEventListener('keydown', onInputEscPress);
+};
+
+setupOpen.addEventListener('click', openPopup);
+setupClose.addEventListener('click', closePopup);
+
+setupOpenIcon.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+setupSubmit.addEventListener('click', setupForm.submit);
+setupSubmit.addEventListener('keydown', onSubmitForm);
+
+var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
+var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
+var fireballWrap = document.querySelector('.setup-fireball-wrap');
+
+wizardCoat.addEventListener('click', function () {
+  wizardCoat.style.fill = WIZARD_COAT_COLORS[Math.floor(Math.random() * WIZARD_COAT_COLORS.length)];
+});
+wizardEyes.addEventListener('click', function () {
+  wizardEyes.style.fill = WIZARD_EYES_COLORS[Math.floor(Math.random() * WIZARD_EYES_COLORS.length)];
+});
+fireballWrap.addEventListener('click', function () {
+  // fireballWrap.style.fill = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
+  fireballWrap.style.background = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
+});
+
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 // генерация массива волшебников и их свойств
