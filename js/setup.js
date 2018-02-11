@@ -15,11 +15,15 @@
   };
 
   var onSubmitForm = function (evt) {
-    window.util.isEnterEvent(evt, setupForm.submit);
+    if (evt.keyCode === window.ENTER_KEYCODE) {
+      setupForm.submit();
+    }
   };
 
   var onInputEscPress = function (evt) {
-    window.util.isEscEvent(evt, evt.stopPropagation);
+    if (evt.keyCode === window.ESC_KEYCODE) {
+      evt.stopPropagation();
+    }
   };
 
   var openPopup = function () {

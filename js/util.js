@@ -1,19 +1,23 @@
 'use strict';
 
-window.util = (function () {
-  var ENTER_KEYCODE = 13;
-  var ESC_KEYCODE = 27;
+(function () {
+  window.ENTER_KEYCODE = 13;
+  window.ESC_KEYCODE = 27;
 
-  return {
-    isEscEvent: function (evt, action) {
-      if (evt.keyCode === ESC_KEYCODE) {
-        action();
+  window.util = (function () {
+
+    return {
+      isEscEvent: function (evt, action) {
+        if (evt.keyCode === window.ESC_KEYCODE) {
+          action();
+        }
+      },
+      isEnterEvent: function (evt, action) {
+        if (evt.keyCode === window.ENTER_KEYCODE) {
+          action();
+        }
       }
-    },
-    isEnterEvent: function (evt, action) {
-      if (evt.keyCode === ENTER_KEYCODE) {
-        action();
-      }
-    }
-  };
+    };
+  })();
+
 })();
