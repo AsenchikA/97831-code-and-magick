@@ -32,6 +32,8 @@
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
     setupUserName.removeEventListener('keydown', onInputEscPress);
+    setup.style.left = '';
+    setup.style.top = '';
   };
 
   setupOpen.addEventListener('click', openPopup);
