@@ -20,8 +20,7 @@
     xhr.addEventListener('timeout', function () {
       onError('запрос не успел выполниться за ' + xhr.timeout + 'мс');
     });
-
-    xhr.open('GET', url);
+    xhr.open(type, url);
     if (data) {
       xhr.send(data);
     } else {
@@ -30,7 +29,7 @@
   };
   window.backend = {
     load: function (onLoad, onError) {
-      sendRequest('https://dump.academy/code-and-magick/data', 'GET', onLoad, onError);
+      sendRequest('https://1510.dump.academy/code-and-magick/data.', 'GET', onLoad, onError);
     },
     save: function (data, onLoad, onError) {
       sendRequest('https://js.dump.academy/code-and-magick', 'POST', onLoad, onError, data);
