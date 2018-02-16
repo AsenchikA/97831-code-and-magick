@@ -29,7 +29,7 @@
   };
   window.backend = {
     load: function (onLoad, onError) {
-      sendRequest('https://1510.dump.academy/code-and-magick/data.', 'GET', onLoad, onError);
+      sendRequest('https://js.dump.academy/code-and-magick/data', 'GET', onLoad, onError);
     },
     save: function (data, onLoad, onError) {
       sendRequest('https://js.dump.academy/code-and-magick', 'POST', onLoad, onError, data);
