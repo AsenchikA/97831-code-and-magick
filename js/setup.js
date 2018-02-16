@@ -59,5 +59,4 @@
   window.colorize(fireballWrap, window.wizardProperties.FIREBALL_COLORS);
 
   document.querySelector('.setup-similar').classList.remove('hidden');
-
 })();
