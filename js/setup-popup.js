@@ -49,14 +49,4 @@
 
   setupSubmit.addEventListener('click', setupForm.submit);
   setupSubmit.addEventListener('keydown', onSubmitForm);
-
-  var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
-  var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
-  var fireballWrap = document.querySelector('.setup-fireball-wrap');
-
-  window.colorize(wizardCoat, window.wizardProperties.WIZARD_COAT_COLORS, window.updateWizards);
-  window.colorize(wizardEyes, window.wizardProperties.WIZARD_EYES_COLORS, window.updateWizards);
-  window.colorize(fireballWrap, window.wizardProperties.FIREBALL_COLORS);
-
-  document.querySelector('.setup-similar').classList.remove('hidden');
 })();

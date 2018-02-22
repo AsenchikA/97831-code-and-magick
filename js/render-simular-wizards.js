@@ -5,14 +5,14 @@
   var QUANTITY_WIZARD = 4;
 
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-  var simularList = document.querySelector('.setup-similar-list');
+  var similarList = document.querySelector('.setup-similar-list');
 
   var getRank = function (wizard) {
     var rank = 0;
-    if (wizard.colorCoat === window.wizardCoatColor) {
+    if (wizard.colorCoat === window.setupWizard.getCoatColor()) {
       rank += 2;
     }
-    if (wizard.colorEyes === window.wizardEyesColor) {
+    if (wizard.colorEyes === window.setupWizard.getEyesColor()) {
       rank += 1;
     }
     return rank;
@@ -47,14 +47,10 @@
       fragment.appendChild(wizardItem);
     }
 
-    var childrenSimularList = simularList.childNodes;
-    [].forEach.call(childrenSimularList, function (child) {
-      if (child.className === 'setup-similar-item') {
-        simularList.removeChild(child);
-      }
-    });
-
-    simularList.appendChild(fragment);
+    if (similarList.childNodes !== []) {
+      similarList.textContent = '';
+    }
+    similarList.appendChild(fragment);
   };
 
 })();
